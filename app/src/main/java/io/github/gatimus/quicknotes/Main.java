@@ -21,10 +21,11 @@ import android.view.ViewGroup;
 public class Main extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private static final String TAG = "Main";
-    private Resources res;
+    private Resources resources;
     private FragmentManager fragmentManager;
     private DialogFragment about;
     private DialogFragment help;
+    private DAO dao;
 
     //Fragment managing the behaviors, interactions and presentation of the navigation drawer.
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -37,10 +38,11 @@ public class Main extends ActionBarActivity implements NavigationDrawerFragment.
         super.onCreate(savedInstanceState);
         Log.v(TAG, "Create");
         setContentView(R.layout.activity_main);
-        res = getApplicationContext().getResources();
+        resources = getApplicationContext().getResources();
         fragmentManager = this.getFragmentManager();
         about = new About();
         help = new Help();
+        dao = new DAO(getApplicationContext(), resources);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -90,7 +92,10 @@ public class Main extends ActionBarActivity implements NavigationDrawerFragment.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.i(TAG, item.getTitle().toString() + " Selected");
+        if(item.getTitle() != null){
+            Log.i(TAG, item.getTitle().toString());
+        }
+        //Log.i(TAG, item.getTitle().toString() + " Selected");
         int id = item.getItemId();
         switch(id){
             case R.id.action_settings :
@@ -98,10 +103,10 @@ public class Main extends ActionBarActivity implements NavigationDrawerFragment.
                 startActivity(intent);
                 break;
             case R.id.action_about :
-                about.show(fragmentManager, res.getString(R.string.action_about));
+                about.show(fragmentManager, resources.getString(R.string.action_about));
                 break;
             case R.id.action_help :
-                help.show(fragmentManager, res.getString(R.string.action_help));
+                help.show(fragmentManager, resources.getString(R.string.action_help));
                 break;
             case R.id.action_quit : System.exit(0);
                 break;
@@ -111,9 +116,7 @@ public class Main extends ActionBarActivity implements NavigationDrawerFragment.
         return super.onOptionsItemSelected(item);
     } //onOptionsItemSelected
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
+     //A placeholder fragment containing a simple view.
     public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
