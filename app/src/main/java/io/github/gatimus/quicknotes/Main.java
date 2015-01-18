@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 
 
 public class Main extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -48,6 +49,9 @@ public class Main extends ActionBarActivity implements NavigationDrawerFragment.
         mTitle = getTitle();
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        dao = new DAO(getApplicationContext(), resources);
+        CursorAdapter noteAdapter = new NoteAdapter(getApplicationContext(), dao.list());
 
     } //onCreate
 
