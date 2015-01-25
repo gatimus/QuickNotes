@@ -1,14 +1,14 @@
 package io.github.gatimus.quicknotes;
 
 
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
-import android.app.AlertDialog.Builder;
 
-public class About extends DialogFragment {
+public class About extends DialogFragment implements DialogInterface.OnClickListener{
 
     private static final String TAG = "About";
     private Builder builder;
@@ -20,24 +20,21 @@ public class About extends DialogFragment {
         Log.v(TAG, "Create");
         super.onCreateDialog(savedInstanceState);
         stringBuilder = new StringBuilder();
-        stringBuilder.append("v");
-        stringBuilder.append(BuildConfig.VERSION_CODE);
-        stringBuilder.append("\n");
-        stringBuilder.append("Version: ");
-        stringBuilder.append(BuildConfig.VERSION_NAME);
-        stringBuilder.append("\n");
+        stringBuilder.append("v").append(BuildConfig.VERSION_CODE);
+        stringBuilder.append("(").append(BuildConfig.VERSION_NAME).append(")\n");
         stringBuilder.append(getString(R.string.msg_about));
         msg = stringBuilder.toString();
         builder = new Builder(getActivity());
         builder.setTitle(R.string.action_about);
+        builder.setIcon(android.R.drawable.ic_dialog_info);
         builder.setMessage(msg);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                Log.i(TAG, "Ok");
-                dialog.dismiss();
-            } //onClick
-        });
+        builder.setNeutralButton(R.string.ok, this);
         return builder.create();
     } //onCreateDialog
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        dialog.dismiss();
+    } //onClick
 
 } //class

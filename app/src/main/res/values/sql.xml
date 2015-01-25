@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="create_table">
+        CREATE TABLE Note(
+            _id INTEGER PRIMARY KEY,
+            Title VARCHAR(255),
+            Body TEXT
+        );
+    </string>
+    <string name="new_record">
+        INSERT INTO Note (Title, Body)
+        VALUES (\'Shopping List\', \'Milk\');
+    </string>
+</resources>

@@ -36,6 +36,7 @@ public class DAO extends SQLiteOpenHelper {
         Log.v(TAG, "Create");
         try {
             db.execSQL(resources.getString(R.string.create_table));
+            db.execSQL(resources.getString(R.string.new_record));
         } catch (SQLiteException e){
             Log.e(TAG, e.toString());
         }
@@ -70,23 +71,16 @@ public class DAO extends SQLiteOpenHelper {
 
     public Cursor search(String searchString){
         Log.v(TAG, "search for " + searchString);
-        List<Note> result = new ArrayList<Note>();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor;
         String[] columns = {"_id", "Title", "Body"};
-        String[] search = {searchString};
+        String[] search = {"%"+searchString+"%","%"+searchString+"%"};
         try{
-            cursor = db.query("Note", columns, "WHERE Title '%?%' IN(Title, Body)", search, null, null, null);
+            cursor = db.query("Note", columns, "Title LIKE ? OR Body LIKE ?", search, null, null, null);
         } catch (SQLiteException e){
             Log.e(TAG, e.toString());
             cursor = null;
         }
-        /*
-        while (cursor.moveToNext()){
-            result.add(new Note(cursor.getInt(0),cursor.getString(1), cursor.getString(2)));
-        }
-        */
-        db.close();
         return cursor;
     } //search
 
@@ -104,7 +98,7 @@ public class DAO extends SQLiteOpenHelper {
                 }
             } else {
                 String[] id = {String.valueOf(note.ID)};
-                if(db.update("Note", values, "WHERE _id = ?", id) == 1){
+                if(db.update("Note", values, "`_id` = ?", id) == 1){
                     success = true;
                 }
             }
@@ -121,7 +115,7 @@ public class DAO extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] id = {String.valueOf(note.ID)};
         try{
-            if(db.delete("Note", "WHERE _id = ?", id) == 1){
+            if(db.delete("Note", "`_id` = ?", id) == 1){
                 success = true;
             }
         } catch (SQLiteException e){

@@ -3,23 +3,32 @@
 
     <string name="app_name">Quick Notes</string>
 
+    <string name="action_search">Search</string>
+    <string name="action_new">New</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
     <string name="action_help">Help</string>
     <string name="action_quit">Quit</string>
 
     <string name="msg_about">
-        About body <!--TODO-->
+        This app uses a database to save, delete, and open notes.
     </string>
     <string name="msg_help">
-        Help body <!--TODO-->
+        Type a title and save to get started. Slide from the left to see all your notes.
     </string>
+    <string name="msg_save">Save note?</string>
+    <string name="msg_delete">Delete note?</string>
+    <string name="msg_new">Save current note before making new note?</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="empty_list">Save a note in the main screen.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
 
 </resources>

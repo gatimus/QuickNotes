@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 
-public class Help extends DialogFragment {
+public class Help extends DialogFragment implements DialogInterface.OnClickListener{
 
     private static final String TAG = "Help";
     private Builder builder;
@@ -18,14 +18,15 @@ public class Help extends DialogFragment {
         super.onCreateDialog(savedInstanceState);
         builder = new Builder(getActivity());
         builder.setTitle(R.string.action_help);
+        builder.setIcon(android.R.drawable.ic_menu_help);
         builder.setMessage(R.string.msg_help);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                Log.i(TAG, "Ok");
-                dialog.dismiss();
-            } //onClick
-        });
+        builder.setNeutralButton(R.string.ok, this);
         return builder.create();
     } //onCreateDialog
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        dialog.dismiss();
+    } //onClick
 
 } //class

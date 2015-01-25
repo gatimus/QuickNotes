@@ -1,40 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Main">
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_search"
         android:orderInCategory="1"
-        android:title="@string/action_settings"
-        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:visible="true"
+        android:enabled="true"/>
+
+    <item
+        android:id="@+id/action_save"
+        android:orderInCategory="2"
+        android:title="@string/action_save"
+        android:icon="@android:drawable/ic_menu_save"
         app:showAsAction="ifRoom"
         android:visible="true"
         android:enabled="true"/>
+
+    <item
+        android:id="@+id/action_delete"
+        android:orderInCategory="3"
+        android:title="@string/action_delete"
+        android:icon="@android:drawable/ic_menu_delete"
+        app:showAsAction="ifRoom"
+        android:visible="true"
+        android:enabled="true"/>
+
+    <item
+        android:id="@+id/action_new"
+        android:orderInCategory="4"
+        android:title="@string/action_new"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="ifRoom"
+        android:visible="true"
+        android:enabled="true"/>
+
     <item
         android:id="@+id/action_about"
-        android:orderInCategory="2"
+        android:orderInCategory="5"
         android:title="@string/action_about"
         android:icon="@android:drawable/ic_menu_info_details"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:visible="true"
         android:enabled="true"/>
     <item
         android:id="@+id/action_help"
-        android:orderInCategory="3"
+        android:orderInCategory="6"
         android:title="@string/action_help"
         android:icon="@android:drawable/ic_menu_help"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:visible="true"
         android:enabled="true"/>
     <item
         android:id="@+id/action_quit"
-        android:orderInCategory="4"
+        android:orderInCategory="7"
         android:title="@string/action_quit"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:visible="true"
         android:enabled="true"/>
+
+
 </menu>
